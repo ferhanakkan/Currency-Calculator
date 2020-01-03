@@ -14,8 +14,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="250" translatesAutoresizingMaskIntoConstraints="NO" id="ISy-MJ-NHz">
-                        <rect key="frame" x="10" y="44" width="394" height="830"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="ISy-MJ-NHz">
+                        <rect key="frame" x="10" y="44" width="394" height="680"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="iEx-b6-H2g">
                                 <rect key="frame" x="0.0" y="0.0" width="394" height="284"/>
@@ -63,13 +63,14 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="wmI-Ai-734">
-                                <rect key="frame" x="0.0" y="534" width="394" height="296"/>
+                                <rect key="frame" x="0.0" y="384" width="394" height="296"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="rIJ-zA-bab">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="216"/>
                                         <subviews>
                                             <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="W4w-8w-jNT" userLabel="FromCurrency">
                                                 <rect key="frame" x="0.0" y="0.0" width="197" height="216"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="fromPicker"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="216" id="NDy-5X-Rrw"/>
                                                 </constraints>
@@ -106,13 +107,15 @@
                     <constraint firstAttribute="trailing" secondItem="ISy-MJ-NHz" secondAttribute="trailing" constant="10" id="77C-lf-uwp"/>
                     <constraint firstItem="ISy-MJ-NHz" firstAttribute="top" secondItem="VA5-QA-5wB" secondAttribute="top" id="dRF-1h-ndG"/>
                     <constraint firstAttribute="leading" secondItem="ISy-MJ-NHz" secondAttribute="leading" constant="-10" id="pUr-9n-ddo"/>
-                    <constraint firstItem="VA5-QA-5wB" firstAttribute="bottom" secondItem="ISy-MJ-NHz" secondAttribute="bottom" id="tGJ-TG-hSO"/>
+                    <constraint firstAttribute="bottom" secondItem="ISy-MJ-NHz" secondAttribute="bottom" constant="30" id="tGJ-TG-hSO"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="VA5-QA-5wB"/>
             </view>
             <connections>
                 <outlet property="calculatedCurrencyLabel" destination="09M-mF-g1H" id="sZK-z2-W3k"/>
                 <outlet property="currencyToCurrencyRateLabel" destination="onu-rc-APw" id="XqE-oY-MPy"/>
+                <outlet property="fromCurrenctPickerView" destination="W4w-8w-jNT" id="tbc-q3-hkK"/>
+                <outlet property="toCurrencyPicker" destination="UQ1-9H-BlH" id="beN-o8-eB5"/>
                 <outlet property="usersCurrencyTextfield" destination="snT-Y2-syj" id="MNs-1i-aCX"/>
             </connections>
             <point key="canvasLocation" x="79.710144927536234" y="44.866071428571423"/>
