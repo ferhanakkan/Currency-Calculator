@@ -8,23 +8,23 @@
 
 import CoreLocation
 
-protocol CurrencyManagerDelegate {
-    func didUpdateWeather(_ currencyManager: CurrencyManager, currency: CurrencyModel)
+protocol CurrencyViewModelDelegate {
+    func didUpdateWeather(_ currencyViewModel: CurrencyViewModel, currency: CurrencyModel)
     func didFailWithError(error: Error)
 }
 
-struct CurrencyManager {
+struct CurrencyViewModel {
     let apiURL = "https://api.exchangerate-api.com/v4/latest/USD"
             
     let nameArray = ["USD","AED", "ARS", "AUD", "BGN", "BRL", "BSD", "CAD", "CHF", "CLP", "CNY" , "COP", "CZK" , "DKK", "DOP", "EGP", "EUR", "FJD", "GBP", "GTQ", "HKD", "HRK", "HUF", "IDR", "INR", "ISK", "JPY", "KRW", "KZT", "MXN", "MYR", "NOK", "NZD", "PAB", "PEN", "PHP", "PKR", "PLN", "PYG", "RON", "RUB", "SAR", "SEK", "SGD", "THB", "TRY", "TWD","UAH", "UYU", "VND", "ZAR"]
     
-    var delegate: CurrencyManagerDelegate?
+    var delegate: CurrencyViewModelDelegate?
     
     var dictonary: [String : Double]?
     var firstCurrency: Double = 1.0
     var secondCurrency: Double = 1.0
     
-    mutating func test(currencyModel: CurrencyModel) {
+    mutating func setDictonary(currencyModel: CurrencyModel) {
         dictonary = creatDictonary(currencyModel: currencyModel)
     }
     
@@ -67,7 +67,7 @@ struct CurrencyManager {
 
 //MARK: - RefreshCurrency
 
-extension CurrencyManager {
+extension CurrencyViewModel {
     
     
     func refreshCurrency() -> String{
@@ -90,7 +90,7 @@ extension CurrencyManager {
 
 //MARK: - Dictonary
 
-extension CurrencyManager {
+extension CurrencyViewModel {
     
     func creatDictonary(currencyModel: CurrencyModel) -> [String : Double] {
 
@@ -101,7 +101,7 @@ extension CurrencyManager {
 
 //MARK: - setValue
 
-extension CurrencyManager {
+extension CurrencyViewModel {
     
     func setValue(decodedData:CurrencyData ) -> CurrencyModel {
         let aed = decodedData.rates.AED

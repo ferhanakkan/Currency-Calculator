@@ -19,21 +19,21 @@ class CurrencySelectorView: UIViewController {
     @IBOutlet weak var currencyToCurrencyResultCurrencyTypeLabel: UILabel!
     @IBOutlet weak var calculatedCurrentTypeLabel: UILabel!
     
-    var currencyManager = CurrencyManager()
+    var currencyViewModel = CurrencyViewModel()
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         pickerSetter()
         currencyManagerDelegateSetter()
-        currencyManager.fetchCurrency()
+        currencyViewModel.fetchCurrency()
         hideKeyboardWhenTappedAround()
         setdelegateTextfiled()
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
         if usersCurrencyTextfield.text != "" {
-            calculatedCurrencyLabel.text = currencyManager.userCalculation(userAmount: Double(usersCurrencyTextfield.text!)!)
+            calculatedCurrencyLabel.text = currencyViewModel.userCalculation(userAmount: Double(usersCurrencyTextfield.text!)!)
         }
     }
     
@@ -55,27 +55,27 @@ extension CurrencySelectorView: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return currencyManager.nameArray.count
+        return currencyViewModel.nameArray.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return currencyManager.nameArray[row]
+        return currencyViewModel.nameArray[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // selected row process
         if pickerView.accessibilityIdentifier == "fromPicker" {
-            currencyToCurrencyRateLabel.text = ("1.00 \(currencyManager.nameArray[row])")
-            currencyManager.firstCurrency = currencyManager.dictonary![currencyManager.nameArray[row]]!
-            usersCurrencyTextfield.placeholder = "Enter amount of \((currencyManager.nameArray[row])) to calculate"
+            currencyToCurrencyRateLabel.text = ("1.00 \(currencyViewModel.nameArray[row])")
+            currencyViewModel.firstCurrency = currencyViewModel.dictonary![currencyViewModel.nameArray[row]]!
+            usersCurrencyTextfield.placeholder = "Enter amount of \((currencyViewModel.nameArray[row])) to calculate"
         } else if pickerView.accessibilityIdentifier == "secondPicker" {
-            currencyManager.secondCurrency = currencyManager.dictonary![currencyManager.nameArray[row]]!
-            currencyToCurrencyResultCurrencyTypeLabel.text = "\(currencyManager.nameArray[row])"
-            calculatedCurrentTypeLabel.text = "\(currencyManager.nameArray[row])"
+            currencyViewModel.secondCurrency = currencyViewModel.dictonary![currencyViewModel.nameArray[row]]!
+            currencyToCurrencyResultCurrencyTypeLabel.text = "\(currencyViewModel.nameArray[row])"
+            calculatedCurrentTypeLabel.text = "\(currencyViewModel.nameArray[row])"
         } else {
             print("picker error")
         }
-        currencyToCurrencyResultLabel.text = currencyManager.refreshCurrency()
+        currencyToCurrencyResultLabel.text = currencyViewModel.refreshCurrency()
     }
     
     
@@ -83,23 +83,16 @@ extension CurrencySelectorView: UIPickerViewDelegate, UIPickerViewDataSource {
 
 //MARK: - CurrencyManagerDelegate
 
-extension CurrencySelectorView: CurrencyManagerDelegate {
-    func didUpdateWeather(_ currencyManager: CurrencyManager, currency: CurrencyModel) {
-                DispatchQueue.main.async {
-                 self.currencyManager.test(currencyModel: currency)
-                }
+extension CurrencySelectorView: CurrencyViewModelDelegate {
+    func didUpdateWeather(_ currencyManager: CurrencyViewModel, currency: CurrencyModel) {
+        DispatchQueue.main.async {
+            self.currencyViewModel.setDictonary(currencyModel: currency)
+        }
     }
-    
     
     func currencyManagerDelegateSetter() {
-        currencyManager.delegate = self
+        currencyViewModel.delegate = self
     }
-    
-//    func didUpdateWeather(_ currencyManager: CurrencyManager, currency: CurrencyModel) {
-//        DispatchQueue.main.async {
-//          let a = currencyManager.creatDictonary(currencyModel: currency)
-//        }
-//    }
     
     func didFailWithError(error: Error) {
         print("Error is \(error)")
@@ -132,7 +125,7 @@ extension CurrencySelectorView: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if usersCurrencyTextfield.text != "" {
-            calculatedCurrencyLabel.text = currencyManager.userCalculation(userAmount: Double(usersCurrencyTextfield.text!)!)
+            calculatedCurrencyLabel.text = currencyViewModel.userCalculation(userAmount: Double(usersCurrencyTextfield.text!)!)
         }
     }
 }
