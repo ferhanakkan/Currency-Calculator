@@ -20,7 +20,15 @@ struct CurrencyManager {
     
     var delegate: CurrencyManagerDelegate?
     
-    func fetchCurrency() {
+    var dictonary: [String : Double]?
+    var firstCurrency: Double = 1.0
+    var secondCurrency: Double = 1.0
+    
+    mutating func test(currencyModel: CurrencyModel) {
+        dictonary = creatDictonary(currencyModel: currencyModel)
+    }
+    
+     func fetchCurrency() {
         performRequest(with: apiURL)
     }
     
@@ -34,6 +42,7 @@ struct CurrencyManager {
                 }
                 if let safeData = data {
                     if let currency = self.parseJSON(safeData) {
+                        
                         self.delegate?.didUpdateWeather(self, currency: currency)
                     }
                 }
@@ -60,7 +69,8 @@ struct CurrencyManager {
 
 extension CurrencyManager {
     
-    func refreshCurrency(firstCurrency: Double, secondCurrency: Double) -> String{
+    
+    func refreshCurrency() -> String{
         let result = calculateCurrency(moneyType: firstCurrency, toType: secondCurrency)
         return "=\(result)"
     }
@@ -70,6 +80,12 @@ extension CurrencyManager {
         let secondStep = firstStep*toType
         return String(format: "%.2f", secondStep)
     }
+    
+    func userCalculation(userAmount: Double) -> String{
+        let result = userAmount*(secondCurrency/firstCurrency)
+        return "\(String(format: "%.2f", result))"
+    }
+    
 }
 
 //MARK: - Dictonary
@@ -141,8 +157,6 @@ extension CurrencyManager {
         
 
         let currency = CurrencyModel( USD: 1, AED: aed, ARS: ars, AUD: aud, BGN: bgn, BRL: brl, BSD: bsd, CAD: cad, CHF: chf, CLP: clp, CNY: cny, COP: cop, CZK: czk, DKK: dkk, DOP: dop, EGP: egp, EUR: eur, FJD: fjd, GBP: gbp, GTQ: gtq, HKD: hkd, HRK: hrk, HUF: huf, IDR: idr, INR: inr, ISK: isk, JPY: jpy, KRW: krw, KZT: kzt, MXN: mxn, MYR: myr, NOK: nok, NZD: nzd, PAB: pab, PEN: pen, PHP: php, PKR: pkr, PLN: pln, PYG: pyg, RON: ron, RUB: rub, SAR: sar, SEK: sek, SGD: sgd, THB: thb, TRY: trk, TWD: twd, UAH: uah, UYU: uyu, VND: vnd, ZAR: zar)
-        
-        
         
 //        let nameArray = ["AED", "ARS", "AUD", "BGN", "BRL", "BSD", "CAD", "CHF", "CLP", "CNY" , "COP", "CZK" , "DKK", "DOP", "EGP", "EUR", "FJD", "GBP", "GTQ", "HKD", "HRK", "HUF", "IDR", "INR", "ISK", "JPY", "KRW", "KZT", "MXN", "MYR", "NOK", "NZD", "PAB", "PEN", "PHP", "PKR", "PLN", "PYG", "RON", "RUB", "SAR", "SEK", "SGD", "THB", "TRY", "TWD","UAH", "UYU", "VND", "ZAR"]
 //

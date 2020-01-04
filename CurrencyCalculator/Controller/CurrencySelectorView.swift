@@ -20,10 +20,7 @@ class CurrencySelectorView: UIViewController {
     @IBOutlet weak var calculatedCurrentTypeLabel: UILabel!
     
     var currencyManager = CurrencyManager()
-    
-    var dictonary : [String : Double]?
-    var firstCurrency : Double = 1.0
-    var secondCurrency : Double = 1.0
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +33,7 @@ class CurrencySelectorView: UIViewController {
     
     @IBAction func calculatePressed(_ sender: UIButton) {
         if usersCurrencyTextfield.text != "" {
-            let userAmount = Double(usersCurrencyTextfield.text!)
-            var result = userAmount!*(secondCurrency/firstCurrency)
-            
-            calculatedCurrencyLabel.text = "\(result)"
+            calculatedCurrencyLabel.text = currencyManager.userCalculation(userAmount: Double(usersCurrencyTextfield.text!)!)
         }
     }
     
@@ -72,16 +66,16 @@ extension CurrencySelectorView: UIPickerViewDelegate, UIPickerViewDataSource {
         // selected row process
         if pickerView.accessibilityIdentifier == "fromPicker" {
             currencyToCurrencyRateLabel.text = ("1.00 \(currencyManager.nameArray[row])")
-            firstCurrency = dictonary![currencyManager.nameArray[row]]!
+            currencyManager.firstCurrency = currencyManager.dictonary![currencyManager.nameArray[row]]!
             usersCurrencyTextfield.placeholder = "Enter amount of \((currencyManager.nameArray[row])) to calculate"
         } else if pickerView.accessibilityIdentifier == "secondPicker" {
-            secondCurrency = dictonary![currencyManager.nameArray[row]]!
+            currencyManager.secondCurrency = currencyManager.dictonary![currencyManager.nameArray[row]]!
             currencyToCurrencyResultCurrencyTypeLabel.text = "\(currencyManager.nameArray[row])"
             calculatedCurrentTypeLabel.text = "\(currencyManager.nameArray[row])"
         } else {
             print("picker error")
         }
-        currencyToCurrencyResultLabel.text = currencyManager.refreshCurrency(firstCurrency: firstCurrency, secondCurrency: secondCurrency)
+        currencyToCurrencyResultLabel.text = currencyManager.refreshCurrency()
     }
     
     
@@ -90,16 +84,22 @@ extension CurrencySelectorView: UIPickerViewDelegate, UIPickerViewDataSource {
 //MARK: - CurrencyManagerDelegate
 
 extension CurrencySelectorView: CurrencyManagerDelegate {
+    func didUpdateWeather(_ currencyManager: CurrencyManager, currency: CurrencyModel) {
+                DispatchQueue.main.async {
+                 self.currencyManager.test(currencyModel: currency)
+                }
+    }
+    
     
     func currencyManagerDelegateSetter() {
         currencyManager.delegate = self
     }
     
-    func didUpdateWeather(_ currencyManager: CurrencyManager, currency: CurrencyModel) {
-        DispatchQueue.main.async {
-            self.dictonary=currencyManager.creatDictonary(currencyModel: currency)
-        }
-    }
+//    func didUpdateWeather(_ currencyManager: CurrencyManager, currency: CurrencyModel) {
+//        DispatchQueue.main.async {
+//          let a = currencyManager.creatDictonary(currencyModel: currency)
+//        }
+//    }
     
     func didFailWithError(error: Error) {
         print("Error is \(error)")
@@ -131,9 +131,8 @@ extension CurrencySelectorView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        if let city = usersCurrencyTextfield.text {
-            print("do something\(city)")
+        if usersCurrencyTextfield.text != "" {
+            calculatedCurrencyLabel.text = currencyManager.userCalculation(userAmount: Double(usersCurrencyTextfield.text!)!)
         }
     }
 }
