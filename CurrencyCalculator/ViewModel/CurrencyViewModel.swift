@@ -23,6 +23,8 @@ struct CurrencyViewModel {
     var dictonary: [String : Double]?
     var firstCurrency: Double = 1.0
     var secondCurrency: Double = 1.0
+    var firstCurrencyType: String = "USD"
+    var secondCurrencyType: String = "USD"
     
     mutating func setDictonary(currencyModel: CurrencyModel) {
         dictonary = creatDictonary(currencyModel: currencyModel)
@@ -72,7 +74,11 @@ extension CurrencyViewModel {
     
     func refreshCurrency() -> String{
         let result = calculateCurrency(moneyType: firstCurrency, toType: secondCurrency)
-        return "=\(result)"
+        return "1.00 \(firstCurrencyType) = \(result) \(secondCurrencyType)"
+    }
+    
+    func refreshPlaceholder() -> String{
+        return "Enter amount of \(firstCurrencyType) to \(secondCurrencyType) calculate"
     }
     
     func calculateCurrency(moneyType: Double, toType: Double) -> String {
@@ -83,7 +89,7 @@ extension CurrencyViewModel {
     
     func userCalculation(userAmount: Double) -> String{
         let result = userAmount*(secondCurrency/firstCurrency)
-        return "\(String(format: "%.2f", result))"
+        return "\(String(format: "%.2f", userAmount)) \(firstCurrencyType) is \(String(format: "%.2f", result)) \(secondCurrencyType)"
     }
     
 }
@@ -93,8 +99,8 @@ extension CurrencyViewModel {
 extension CurrencyViewModel {
     
     func creatDictonary(currencyModel: CurrencyModel) -> [String : Double] {
-
-        let dictonary = ["USD":currencyModel.USD,"AED":currencyModel.AED, "ARS":currencyModel.ARS,"AUD":currencyModel.AUD,"BGN":currencyModel.BGN,"BRL":currencyModel.BRL, "BSD":currencyModel.BSD, "CAD":currencyModel.CAD, "CHF":currencyModel.CHF, "CLP":currencyModel.CLP, "CNY":currencyModel.CNY , "COP":currencyModel.COP, "CZK":currencyModel.CZK , "DKK":currencyModel.DKK, "DOP":currencyModel.DOP, "EGP":currencyModel.EGP, "EUR":currencyModel.EUR, "FJD":currencyModel.FJD, "GBP":currencyModel.GBP, "GTQ":currencyModel.GTQ, "HKD":currencyModel.HKD, "HRK":currencyModel.HKD, "HUF":currencyModel.HUF, "IDR":currencyModel.IDR, "INR":currencyModel.INR, "ISK":currencyModel.ISK, "JPY":currencyModel.JPY, "KRW":currencyModel.KRW, "KZT":currencyModel.KZT, "MXN":currencyModel.MXN, "MYR":currencyModel.MYR, "NOK":currencyModel.NOK, "NZD":currencyModel.NZD, "PAB":currencyModel.PAB, "PEN":currencyModel.PEN, "PHP":currencyModel.PHP, "PKR":currencyModel.PKR, "PLN":currencyModel.PLN, "PYG":currencyModel.PYG, "RON":currencyModel.RON, "RUB":currencyModel.RUB, "SAR":currencyModel.SAR, "SEK":currencyModel.SEK, "SGD":currencyModel.SGD, "THB":currencyModel.THB, "TRY":currencyModel.TRY, "TWD":currencyModel.TWD,"UAH":currencyModel.UAH, "UYU":currencyModel.UYU, "VND":currencyModel.VND, "ZAR":currencyModel.ZAR]
+        let dictonaryModel = DictonaryModel()
+        let dictonary = dictonaryModel.creatDictonary(currencyModel: currencyModel)
         return dictonary
     }
 }
@@ -104,68 +110,11 @@ extension CurrencyViewModel {
 extension CurrencyViewModel {
     
     func setValue(decodedData:CurrencyData ) -> CurrencyModel {
-        let aed = decodedData.rates.AED
-        let ars = decodedData.rates.ARS
-        let aud = decodedData.rates.AUD
-        let bgn = decodedData.rates.BGN
-        let brl = decodedData.rates.BRL
-        let bsd = decodedData.rates.BSD
-        let cad = decodedData.rates.CAD
-        let chf = decodedData.rates.CHF
-        let clp = decodedData.rates.CLP
-        let cny = decodedData.rates.CNY
-        let cop = decodedData.rates.COP
-        let czk = decodedData.rates.CZK
-        let dkk = decodedData.rates.DKK
-        let dop = decodedData.rates.DOP
-        let egp = decodedData.rates.EGP
-        let fjd = decodedData.rates.FJD
-        let gbp = decodedData.rates.GBP
-        let gtq = decodedData.rates.GTQ
-        let hkd = decodedData.rates.HKD
-        let hrk = decodedData.rates.HRK
-        let huf = decodedData.rates.HUF
-        let idr = decodedData.rates.IDR
-        let inr = decodedData.rates.INR
-        let isk = decodedData.rates.ISK
-        let jpy = decodedData.rates.JPY
-        let krw = decodedData.rates.KRW
-        let kzt = decodedData.rates.KZT
-        let mxn = decodedData.rates.MXN
-        let myr = decodedData.rates.MYR
-        let nok = decodedData.rates.NOK
-        let nzd = decodedData.rates.NZD
-        let pab = decodedData.rates.PAB
-        let pen = decodedData.rates.PEN
-        let php = decodedData.rates.PHP
-        let pkr = decodedData.rates.PKR
-        let pln = decodedData.rates.PLN
-        let pyg = decodedData.rates.PYG
-        let ron = decodedData.rates.RON
-        let rub = decodedData.rates.RUB
-        let sar = decodedData.rates.SAR
-        let sek = decodedData.rates.SEK
-        let sgd = decodedData.rates.SGD
-        let thb = decodedData.rates.THB
-        let twd = decodedData.rates.TWD
-        let uah = decodedData.rates.UAH
-        let uyu = decodedData.rates.UYU
-        let vnd = decodedData.rates.VND
-        let zar = decodedData.rates.ZAR
-        let eur = decodedData.rates.EUR
-        let trk = decodedData.rates.TRY
         
+        let setValueDataModel = CurrencySetDataModel()
+        let currency = setValueDataModel.setValue(decodedData: decodedData)
+        return currency
 
-        let currency = CurrencyModel( USD: 1, AED: aed, ARS: ars, AUD: aud, BGN: bgn, BRL: brl, BSD: bsd, CAD: cad, CHF: chf, CLP: clp, CNY: cny, COP: cop, CZK: czk, DKK: dkk, DOP: dop, EGP: egp, EUR: eur, FJD: fjd, GBP: gbp, GTQ: gtq, HKD: hkd, HRK: hrk, HUF: huf, IDR: idr, INR: inr, ISK: isk, JPY: jpy, KRW: krw, KZT: kzt, MXN: mxn, MYR: myr, NOK: nok, NZD: nzd, PAB: pab, PEN: pen, PHP: php, PKR: pkr, PLN: pln, PYG: pyg, RON: ron, RUB: rub, SAR: sar, SEK: sek, SGD: sgd, THB: thb, TRY: trk, TWD: twd, UAH: uah, UYU: uyu, VND: vnd, ZAR: zar)
-        
-//        let nameArray = ["AED", "ARS", "AUD", "BGN", "BRL", "BSD", "CAD", "CHF", "CLP", "CNY" , "COP", "CZK" , "DKK", "DOP", "EGP", "EUR", "FJD", "GBP", "GTQ", "HKD", "HRK", "HUF", "IDR", "INR", "ISK", "JPY", "KRW", "KZT", "MXN", "MYR", "NOK", "NZD", "PAB", "PEN", "PHP", "PKR", "PLN", "PYG", "RON", "RUB", "SAR", "SEK", "SGD", "THB", "TRY", "TWD","UAH", "UYU", "VND", "ZAR"]
-//
-//        for doc in nameArray {
-//            let value = decodedData.rates.doc
-//        }
-           
-           
-           return currency
        }
     
 }

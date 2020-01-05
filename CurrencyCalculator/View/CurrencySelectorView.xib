@@ -32,28 +32,10 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="cOo-Kl-vHd">
                                         <rect key="frame" x="0.0" y="135" width="394" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.00 USD " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onu-rc-APw">
-                                                <rect key="frame" x="0.0" y="0.0" width="179.5" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.00 USD = 1.00 USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onu-rc-APw">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Ofq-VR-0h5"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" = 1 .00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8V-aw-Uqw">
-                                                <rect key="frame" x="179.5" y="0.0" width="133" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="5fy-AS-maP"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pxr-ie-d0w" userLabel="ResultCurrencyTypeLevel">
-                                                <rect key="frame" x="312.5" y="0.0" width="81.5" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="0rF-CY-rGh"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -64,32 +46,15 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="cua-ke-z5N">
                                         <rect key="frame" x="0.0" y="250" width="394" height="34"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter amount of USD to calculate" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="snT-Y2-syj">
-                                                <rect key="frame" x="0.0" y="0.0" width="304.5" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter amount of USD to USD calculate" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="snT-Y2-syj">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="wxd-k8-Ofv"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="= 20 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09M-mF-g1H">
-                                                <rect key="frame" x="304.5" y="0.0" width="47.5" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="yG0-WN-jk4"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-y2-etp" userLabel="USD">
-                                                <rect key="frame" x="352" y="0.0" width="42" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="Ull-AF-CVS"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -123,11 +88,11 @@
                                             <constraint firstAttribute="height" constant="50" id="LN8-mK-YJd"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="30"/>
-                                        <state key="normal" title="Calculate">
+                                        <state key="normal" title="Clear">
                                             <color key="titleColor" red="0.87450980389999999" green="0.52156862749999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <connections>
-                                            <action selector="calculatePressed:" destination="cm5-AN-8Se" eventType="touchUpInside" id="8In-zg-xL7"/>
+                                            <action selector="clear:" destination="cm5-AN-8Se" eventType="touchUpInside" id="IYT-83-xN3"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -145,11 +110,7 @@
                 <viewLayoutGuide key="safeArea" id="VA5-QA-5wB"/>
             </view>
             <connections>
-                <outlet property="calculatedCurrencyLabel" destination="09M-mF-g1H" id="sZK-z2-W3k"/>
-                <outlet property="calculatedCurrentTypeLabel" destination="PQn-y2-etp" id="6Sl-0A-7Bd"/>
                 <outlet property="currencyToCurrencyRateLabel" destination="onu-rc-APw" id="XqE-oY-MPy"/>
-                <outlet property="currencyToCurrencyResultCurrencyTypeLabel" destination="Pxr-ie-d0w" id="kwI-D8-H92"/>
-                <outlet property="currencyToCurrencyResultLabel" destination="Q8V-aw-Uqw" id="jid-Pj-b7k"/>
                 <outlet property="fromCurrenctPickerView" destination="W4w-8w-jNT" id="tbc-q3-hkK"/>
                 <outlet property="toCurrencyPicker" destination="UQ1-9H-BlH" id="beN-o8-eB5"/>
                 <outlet property="usersCurrencyTextfield" destination="snT-Y2-syj" id="MNs-1i-aCX"/>
