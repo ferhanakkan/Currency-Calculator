@@ -28,6 +28,7 @@ class CurrencySelectorView: UIViewController {
     @IBAction func clear(_ sender: UIButton) {
         usersCurrencyTextfield.text?.removeAll()
         usersCurrencyTextfield.placeholder = currencyViewModel.refreshPlaceholder()
+        usersCurrencyTextfield.isEnabled = true
     }
 
 }
@@ -123,6 +124,7 @@ extension CurrencySelectorView: UITextFieldDelegate {
         
         if usersCurrencyTextfield.text != "" {
             usersCurrencyTextfield.text = currencyViewModel.userCalculation(userAmount: Double(usersCurrencyTextfield.text!)!)
+            usersCurrencyTextfield.isEnabled = false
         }
     }
 }
