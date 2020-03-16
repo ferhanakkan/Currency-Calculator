@@ -55,13 +55,12 @@ struct CurrencySetDataModel {
         let twd = decodedData.rates.TWD
         let uah = decodedData.rates.UAH
         let uyu = decodedData.rates.UYU
-        let vnd = decodedData.rates.VND
         let zar = decodedData.rates.ZAR
         let eur = decodedData.rates.EUR
         let trk = decodedData.rates.TRY
         
         
-        let currency = CurrencyModel( USD: 1, AED: aed, ARS: ars, AUD: aud, BGN: bgn, BRL: brl, BSD: bsd, CAD: cad, CHF: chf, CLP: clp, CNY: cny, COP: cop, CZK: czk, DKK: dkk, DOP: dop, EGP: egp, EUR: eur, FJD: fjd, GBP: gbp, GTQ: gtq, HKD: hkd, HRK: hrk, HUF: huf, IDR: idr, INR: inr, ISK: isk, JPY: jpy, KRW: krw, KZT: kzt, MXN: mxn, MYR: myr, NOK: nok, NZD: nzd, PAB: pab, PEN: pen, PHP: php, PKR: pkr, PLN: pln, PYG: pyg, RON: ron, RUB: rub, SAR: sar, SEK: sek, SGD: sgd, THB: thb, TRY: trk, TWD: twd, UAH: uah, UYU: uyu, VND: vnd, ZAR: zar)
+        let currency = CurrencyModel( USD: 1, AED: aed, ARS: ars, AUD: aud, BGN: bgn, BRL: brl, BSD: bsd, CAD: cad, CHF: chf, CLP: clp, CNY: cny, COP: cop, CZK: czk, DKK: dkk, DOP: dop, EGP: egp, EUR: eur, FJD: fjd, GBP: gbp, GTQ: gtq, HKD: hkd, HRK: hrk, HUF: huf, IDR: idr, INR: inr, ISK: isk, JPY: jpy, KRW: krw, KZT: kzt, MXN: mxn, MYR: myr, NOK: nok, NZD: nzd, PAB: pab, PEN: pen, PHP: php, PKR: pkr, PLN: pln, PYG: pyg, RON: ron, RUB: rub, SAR: sar, SEK: sek, SGD: sgd, THB: thb, TRY: trk, TWD: twd, UAH: uah, UYU: uyu, ZAR: zar)
         
         return currency
     }

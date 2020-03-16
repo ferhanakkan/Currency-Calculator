@@ -16,7 +16,7 @@ protocol CurrencyViewModelDelegate {
 struct CurrencyViewModel {
     let apiURL = "https://api.exchangerate-api.com/v4/latest/USD"
             
-    let nameArray = ["USD","AED", "ARS", "AUD", "BGN", "BRL", "BSD", "CAD", "CHF", "CLP", "CNY" , "COP", "CZK" , "DKK", "DOP", "EGP", "EUR", "FJD", "GBP", "GTQ", "HKD", "HRK", "HUF", "IDR", "INR", "ISK", "JPY", "KRW", "KZT", "MXN", "MYR", "NOK", "NZD", "PAB", "PEN", "PHP", "PKR", "PLN", "PYG", "RON", "RUB", "SAR", "SEK", "SGD", "THB", "TRY", "TWD","UAH", "UYU", "VND", "ZAR"]
+    let nameArray = ["USD","AED", "ARS", "AUD", "BGN", "BRL", "BSD", "CAD", "CHF", "CLP", "CNY" , "COP", "CZK" , "DKK", "DOP", "EGP", "EUR", "FJD", "GBP", "GTQ", "HKD", "HRK", "HUF", "IDR", "INR", "ISK", "JPY", "KRW", "KZT", "MXN", "MYR", "NOK", "NZD", "PAB", "PEN", "PHP", "PKR", "PLN", "PYG", "RON", "RUB", "SAR", "SEK", "SGD", "THB", "TRY", "TWD","UAH", "UYU", "ZAR"]
     
     var delegate: CurrencyViewModelDelegate?
     
@@ -45,7 +45,9 @@ struct CurrencyViewModel {
                 if let safeData = data {
                     if let currency = self.parseJSON(safeData) {
                         
+                        print("test fero : \(currency)")
                         self.delegate?.didUpdateWeather(self, currency: currency)
+                        
                     }
                 }
             }

@@ -59,7 +59,6 @@ struct Rates: Codable {
     var TWD: Double
     var UAH: Double
     var UYU: Double
-    var VND: Double
     var ZAR: Double
 
 }
